@@ -16,8 +16,10 @@ height=600
 
 # # Ventana y componentes con tkinter
 master = tk.Tk()
-deslizador = tk.Scale(master, from_=-10, to=10, length=600,tickinterval=1, orient=tk.HORIZONTAL)
+deslizador = tk.Scale(master, from_=0, to=10, length=600,tickinterval=1, orient=tk.HORIZONTAL)
 deslizador.pack()
+deslizador1 = tk.Scale(master, from_=-10, to=0, length=600,tickinterval=1, orient=tk.HORIZONTAL)
+deslizador1.pack()
 canvas = tk.Canvas(master, width=width, height=height)
 canvas.pack()
 img = tk.PhotoImage(file="planta.gif")
@@ -114,10 +116,11 @@ def actualizacion_periodica():
         # 
 
         S2=deslizador.get()
-        if S2<0:
-            capacidad_actual += deja_salir(tiempo,S2)
-        else:
-            capacidad_actual += tiempo*S2*1
+        S3=deslizador1.get()
+        if S3<0:
+            capacidad_actual += deja_salir(tiempo,S3)
+        elif S2>0 and capacidad_actual<100:
+            capacidad_actual += tiempo*S2*1 
         label_volumen['text'] =  str(capacidad_actual)
         actualiza_nivel()
 
