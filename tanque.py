@@ -148,7 +148,6 @@ def actualizacion_periodica():
         tanque.actualiza_nivel()
         
 
-
 label_tiempo.after(100, actualizacion_periodica)
 
 
